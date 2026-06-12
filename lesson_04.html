@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пара 4. Grid Layout: позиціонування, areas, minmax, auto-fit, auto-fill</title>
+  <style>
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#4b5563;
+  --accent:#1d4ed8;
+  --border:#dbe1ea;
+  --soft:#eef4ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.65;
+  color:var(--text);
+  background:var(--bg);
+}
+.wrapper{
+  max-width:1120px;
+  margin:0 auto;
+  padding:32px 20px 60px;
+}
+header{
+  background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  color:#fff;
+  padding:28px;
+  border-radius:20px;
+  margin-bottom:24px;
+}
+h1{margin:0 0 8px;font-size:34px}
+h2{margin:0 0 14px;font-size:26px}
+h3{margin:0 0 10px;font-size:20px}
+h4{margin:0 0 8px;font-size:17px}
+p{margin:0 0 12px}
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:20px;
+  box-shadow:0 8px 24px rgba(15,23,42,.05);
+}
+.subsection{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid #e5e7eb;
+}
+ul,ol{margin:0;padding-left:24px}
+li{margin-bottom:8px}
+.meta{
+  color:#e5edff;
+  font-size:15px;
+}
+.code{
+  background:#0f172a;
+  color:#e2e8f0;
+  padding:16px;
+  border-radius:14px;
+  overflow:auto;
+  font-family:Consolas, Monaco, monospace;
+  white-space:pre-wrap;
+  font-size:14px;
+}
+.note{
+  padding:14px 16px;
+  background:#eff6ff;
+  border-left:4px solid var(--accent);
+  border-radius:10px;
+}
+.tip{
+  padding:12px 14px;
+  background:#f8fafc;
+  border:1px solid #dbeafe;
+  border-radius:12px;
+  margin-top:10px;
+}
+.footer{
+  color:var(--muted);
+  font-size:14px;
+  text-align:center;
+  margin-top:12px;
+}
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#dbeafe;
+  color:#1e40af;
+  font-size:14px;
+  margin-top:8px;
+}
+.preview{
+  padding:18px;
+  border:1px dashed #bfd2f8;
+  border-radius:18px;
+  background:#f8fbff;
+  margin-top:12px;
+}
+.grid-two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th,td{
+  border:1px solid #dbe1ea;
+  padding:10px 12px;
+  text-align:left;
+  vertical-align:top;
+}
+th{background:#f8fafc}
+@media (max-width: 860px){
+  .grid-two{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Пара 4. Grid Layout: позиціонування, areas, minmax, auto-fit, auto-fill</h1>
+      <div class="meta">Тема пари</div>
+      <div class="badge">Пояснення + багато прикладів + практика + домашнє завдання</div>
+    </header>
+
+    <section class="section">
+      <h2>Тема пари</h2>
+      <p>В ході пари ми познайомимось з тим, як за допомогою Grid будувати не просто сітку, а повноцінний макет сторінки та адаптивні картки.</p>
+    </section>
+
+    <section class="section"><h2>1. Позиціонування елементів</h2>
+<div class="subsection">
+<h3>span і лінії сітки</h3>
+<p>Елемент можна розтягувати на кілька колонок або рядків.</p>
+<p>Це зручно для акцентних карток, банерів або великих блоків.</p>
+<div class="preview"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+<div style="grid-column:1 / span 2;padding:18px;background:#bbf7d0;border-radius:12px;">Великий блок</div>
+<div style="padding:18px;background:#dbeafe;border-radius:12px;">2</div>
+<div style="padding:18px;background:#dbeafe;border-radius:12px;">3</div>
+<div style="padding:18px;background:#dbeafe;border-radius:12px;">4</div>
+</div></div>
+<h4 style="margin-top:12px;">CSS</h4>
+<div class="code">.big {
+  grid-column: 1 / span 2;
+}</div>
+</div>
+</section><section class="section"><h2>2. Іменовані області і адаптивна магія</h2>
+<div class="subsection">
+<h3>grid-template-areas</h3>
+<p>Named areas дозволяють читати макет майже як ASCII-схему.</p>
+<p>Такий підхід дуже зручний для header, sidebar, content, footer.</p>
+<h4 style="margin-top:12px;">CSS</h4>
+<div class="code">.layout {
+  display: grid;
+  grid-template-areas:
+    &quot;header header&quot;
+    &quot;sidebar content&quot;
+    &quot;footer footer&quot;;
+}</div>
+</div>
+<div class="subsection">
+<h3>minmax і auto-fit</h3>
+<p>Патерн repeat(auto-fit, minmax(240px, 1fr)) — один із найкорисніших у сучасному CSS.</p>
+<p>Він дозволяє робити адаптивні картки навіть без media queries.</p>
+<div class="tip">Це один із найпрактичніших прикладів Grid для реальних сайтів.</div>
+<div class="preview"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+<div style="padding:18px;background:#f5f3ff;border-radius:12px;">Картка 1</div>
+<div style="padding:18px;background:#f5f3ff;border-radius:12px;">Картка 2</div>
+<div style="padding:18px;background:#f5f3ff;border-radius:12px;">Картка 3</div>
+<div style="padding:18px;background:#f5f3ff;border-radius:12px;">Картка 4</div>
+</div></div>
+</div>
+</section>
+
+    <section class="section">
+      <h2>Практична робота на парі</h2>
+      <ol>
+        <li>Створіть макет через grid-template-areas.</li><li>Зробіть один блок ширшим за інші через span.</li><li>Побудуйте адаптивну сітку карток через auto-fit і minmax.</li><li>Порівняйте auto-fit та auto-fill на практиці.</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>Домашнє завдання</h2>
+      <ol>
+        <li>Створіть сторінку портфоліо або блогу.</li><li>Шапку, сайдбар, основний контент і футер побудуйте через named areas.</li><li>Блок з роботами зробіть через repeat(auto-fit, minmax(240px, 1fr)).</li><li>Один із елементів у сітці зробіть акцентним і розтягніть на 2 колонки.</li>
+      </ol>
+      <div class="note" style="margin-top:16px;">Практику і домашнє завдання залишено без ускладнення. Основне розширення у цьому файлі — це пояснення та окремі приклади для кожної частини теми.</div>
+    </section>
+
+    
+  </div>
+</body>
+</html>
