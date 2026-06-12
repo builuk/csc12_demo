@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мобільно адаптивна сторінка</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #222;
+      background: #f4f6f8;
+    }
+
+    header,
+    section,
+    footer {
+      padding: 24px 16px;
+    }
+
+    header,
+    footer {
+      background: #1f2937;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .hero {
+      background: #dbeafe;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+
+    .image-box {
+      min-height: 180px;
+      background: #cbd5e1;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font: inherit;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    @media (min-width: 700px) {
+      nav {
+        flex-direction: row;
+      }
+
+      .hero-content,
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h2>HTML School</h2>
+      <nav>
+        <a href="#hero">Головна</a>
+        <a href="#services">Блоки</a>
+        <a href="#about">Про нас</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="container hero-content">
+      <div>
+        <h1>Мобільно адаптивна сторінка</h1>
+        <p>
+          Простий шаблон з типовими блоками, які можна перевикористати
+          для навчального сайту, лендінгу або домашнього завдання.
+        </p>
+        <a class="button" href="#services">Переглянути блоки</a>
+      </div>
+
+      <div class="image-box">
+        Місце для зображення
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Типові картки</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Картка 1</h3>
+          <p>Блок для послуги, товару, курсу або короткого опису.</p>
+        </div>
+
+        <div class="card">
+          <h3>Картка 2</h3>
+          <p>Такий блок легко копіювати і змінювати під власну тему.</p>
+        </div>
+
+        <div class="card">
+          <h3>Картка 3</h3>
+          <p>На мобільному картки йдуть в одну колонку, на ширшому екрані — в ряд.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-content">
+      <div class="image-box">
+        Фото або ілюстрація
+      </div>
+
+      <div>
+        <h2>Про сторінку</h2>
+        <p>
+          Цей блок можна використати для опису компанії, навчального проєкту,
+          події або автора сайту.
+        </p>
+        <ul>
+          <li>простий HTML;</li>
+          <li>мінімум CSS;</li>
+          <li>адаптація під мобільні екрани;</li>
+          <li>блоки легко замінити власним контентом.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Блок переваг</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Швидко</h3>
+          <p>Можна швидко створити базову структуру сторінки.</p>
+        </div>
+
+        <div class="card">
+          <h3>Зрозуміло</h3>
+          <p>Код легко читати і редагувати навіть початківцям.</p>
+        </div>
+
+        <div class="card">
+          <h3>Адаптивно</h3>
+          <p>Сторінка змінює вигляд залежно від ширини екрана.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Форма</h2>
+
+      <form>
+        <input type="text" placeholder="Ваше ім'я">
+        <input type="email" placeholder="Email">
+        <textarea rows="4" placeholder="Повідомлення"></textarea>
+        <button type="submit">Надіслати</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 HTML School. Простий адаптивний шаблон.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
